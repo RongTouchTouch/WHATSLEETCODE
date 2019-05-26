@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters {
+    // 每次判断集合里有没有重复的元素
+    // 如果有，就remove到没有为止
     public int lengthOfLongestSubstring(String s) {
         Set<Character> set = new HashSet<Character>();
         int start = 0, max = 0;
@@ -29,6 +31,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
     // Leetcode官方Solution2，和自己的解法差不多
     // Sliding Window + HashMap的思想
+    // 但它写的比我的简洁
     public int lengthOfLongestSubstring2(String s) {
         int n = s.length();
         Set<Character> set = new HashSet<>();
