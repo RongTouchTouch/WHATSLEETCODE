@@ -1,43 +1,35 @@
 
 public class MedianofTwoSortedArrays {
-    // 好的我又做不出来。。
-    public double findMedianSortedArraysError(int[] nums1, int[] nums2) {
-        int total_length = (nums1.length+nums2.length-1)/2;
-        if (nums1.length>nums2.length && nums1[0]>nums2[nums2.length-1])
-            return nums1[total_length-1];
-        if ((nums1.length<nums2.length && nums2[0]>nums1[nums1.length-1]))
-            return nums2[total_length-1];
-        int index1 = 0, index2 = 0;
-        int step1 = (nums1.length-index1-1)/2;
-        int step2 = (nums2.length-index2-1)/2;
-        while(total_length!=0){
-            if(nums1[index1+step1]>nums2[index2+step2]){
-                step2 = (nums2.length-index2-1)!=1?(nums2.length-index2-1)/2:1;
-                System.out.println("step2 "+step2);
-                index2 += step2;
-                total_length -=step2;
-            }
-            else if (nums1[index1+step1]<nums2[index2+step2]){
-                step1 = (nums1.length-index1-1)!=1?(nums1.length-index1-1)/2:1;
-                System.out.println("step1 "+step1);
-                index1 += step1;
-                total_length -=step1;
-            }
-            else
-                return nums1[index1];
-            System.out.println(index1 + " " + index2);
-            System.out.println(total_length);
-        }
-        System.out.println(Math.max(nums1[index1-1],nums2[index2]-1) + " " + Math.min(nums1[index1],nums2[index2]));
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+       int left = (nums1.length+nums2.length+1)/2;
+       int right = (nums1.length+nums2.length+2)/2;
 
-        if((nums1.length+nums2.length)%2==1)
-            return Math.min(nums1[index1],nums2[index2]);
-        else
-            return (Math.max(nums1[index1-1],nums2[index2-1])+Math.min(nums1[index1],nums2[index2]))/2.0;
+       return (findKthNumber(nums1, 0, nums1.length-1, nums2, 0, nums2.length-1, left) +
+               findKthNumber(nums1, 0, nums1.length-1, nums2, 0, nums2.length-1, right))/2.0;
 
     }
 
-    public double findMedianSortedArrays(int[] A, int[] B) {
+    public double findKthNumber(int[] nums1, int start1, int end1, int[] nums2, int start2, int end2, int target){
+        int len1 = end1 - start1 + 1;
+        int len2 = end2 - start2 + 1;
+        //让 len1 的长度小于 len2，这样就能保证如果有数组空了，一定是 len1
+        if (len1 > len2) return findKthNumber(nums2, start2, end2, nums1, start1, end1, target);
+        if (len1 == 0) return nums2[start2 + target - 1];
+
+        if (target == 1) return Math.min(nums1[start1], nums2[start2]);
+
+        int i = start1 + Math.min(len1, target / 2) - 1;
+        int j = start2 + Math.min(len2, target / 2) - 1;
+
+        if (nums1[i] > nums2[j]) {
+            return findKthNumber(nums1, start1, end1, nums2, j + 1, end2, target - (j - start2 + 1));
+        }
+        else {
+            return findKthNumber(nums1, i + 1, end1, nums2, start2, end2, target - (i - start1 + 1));
+        }
+    }
+
+    public double findMedianSortedArrays2(int[] A, int[] B) {
         int m = A.length;
         int n = B.length;
         if (m > n) { // to ensure m<=n
@@ -74,7 +66,7 @@ public class MedianofTwoSortedArrays {
 
     public static void main(String[] agrv) {
         MedianofTwoSortedArrays solution = new MedianofTwoSortedArrays();
-        double result = solution.findMedianSortedArrays(new int[]{1,2},new int[]{3});
+        double result = solution.findMedianSortedArrays(new int[]{1,3},new int[]{2});
         System.out.print(result);
     }
 }
