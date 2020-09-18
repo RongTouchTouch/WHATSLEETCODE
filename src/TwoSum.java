@@ -18,7 +18,7 @@ public class TwoSum {
     }
     public static void main(String agrv[]){
         TwoSum solution = new TwoSum();
-        int[] result = solution.twoSum(new int[] {3,2,4},6);
+        int[] result = solution.twoSum(new int[] {3,2,4,3},6);
         System.out.print(result[0] + " "+ result[1] );
     }
 }

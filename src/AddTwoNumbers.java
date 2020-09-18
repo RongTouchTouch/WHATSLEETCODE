@@ -2,10 +2,22 @@ class ListNode {
     int val;
     ListNode next;
 
-    ListNode(int x) {
-        val = x;
+    ListNode() {
+    }
+
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 }
+
+/***
+ * 这道题的整体思路不难，但需要注意的细节比较多。
+ */
 
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
