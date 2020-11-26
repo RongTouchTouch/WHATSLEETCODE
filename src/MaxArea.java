@@ -55,7 +55,7 @@ public class MaxArea {
     }
     public static void main(String agrv[]){
         int[] height = {1,8,6,2,5,4,8,3,7};
-        MaxArea  solution = new MaxArea ();
+        MaxArea solution = new MaxArea ();
         int result = solution.maxArea(height);
         System.out.println(result);
     }

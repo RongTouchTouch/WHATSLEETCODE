@@ -7,7 +7,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     // 每次判断集合里有没有重复的元素
     // 如果有，就remove到没有为止
     public int lengthOfLongestSubstring(String s) {
-        Set<Character> set = new HashSet<Character>();
+        Set<java.lang.Character> set = new HashSet<>();
         int start = 0, max = 0;
         for (int i = 0; i<s.length(); i++)
         {
@@ -34,7 +34,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     // 但它写的比我的简洁
     public int lengthOfLongestSubstring2(String s) {
         int n = s.length();
-        Set<Character> set = new HashSet<>();
+        Set<java.lang.Character> set = new HashSet<>();
         int ans = 0, i = 0, j = 0;
         while (i < n && j < n) {
             // try to extend the range [i, j]
@@ -53,7 +53,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     // 只用一次遍历√
     public int lengthOfLongestSubstring3(String s) {
         int n = s.length(), ans = 0;
-        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        Map<java.lang.Character, Integer> map = new HashMap<>(); // current index of character
         // try to extend the range [i, j]
         for (int j = 0, i = 0; j < n; j++) {
             if (map.containsKey(s.charAt(j))) {

@@ -91,7 +91,7 @@ public class SearchinRotatedSortedArray {
             int mid_changed = (mid + min_index) % nums.length;
             if(nums[mid_changed] == target)
                 return mid_changed;
-            else if (nums[mid_changed] < target)
+            else if ( target > nums[mid_changed] )
                 start = mid + 1;
             else
                 end = mid - 1;
